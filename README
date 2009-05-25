@@ -1,0 +1,57 @@
+Water Tank Depth Sensor
+=======================
+
+Copyright 2009 Jonathan Oxer
+Copyright 2009 Hugh Blemings
+
++---------------------------------------------------------------------+
+| This project is featured in the book "Practical Arduino" by         |
+| Jonathan Oxer and Hugh Blemings (Apress, 2009). More information    |
+| about the book and this project is available at:                    |
+|                                                                     |
+| www.practicalarduino.com/projects/medium/water-tank-depth-sensor    |
++---------------------------------------------------------------------+
+
+Water is a precious resource in many parts of the world, and many
+people rely on water tanks to supplement their water supply by storing
+collected rainwater or water pumped from a well or bore. But how do you
+measure how full a tank is? Tanks are constructed of opaque material to
+prevent algae growth and often kept closed up to prevent mosquito
+infestation or access by small rodents so it's inconvenient to
+physically look inside. And besides, having a way to measure tank depth
+electronically opens up a world of possibilities such as automatic
+control of pumps to top up tanks when they get low or to disable
+irrigation systems when not enough water is available.
+
+The obvious way to measure tank depth is by placing a series of
+conductive pickups at various heights inside the tank and measure the
+resistance between them. For example, placing ten exposed terminals at
+equal intervals attached to a length of material such as PVC tubing and
+inserting it into the tank will allow you to measure the depth in 10%
+increments by reading the resistance between the bottom terminal and
+each of the terminals above it. The downside to this approach though is
+that you'll need to do a lot of wiring and you'll also need to read an
+analogue input for every individual terminal - while most Arduino
+designs have no more than 6 analogue inputs.
+
+This project works a little differently. It uses a device called a
+differential pressure transducer to measure the water pressure at the
+bottom of the tank, and from that to calculate how full the tank is.
+Water pressure increases by about 9.8067kPa per meter of depth so a
+full tank 2m tall will have a pressure at the bottom of about
+19.6134kPa above ambient atmospheric pressure. The "above ambient
+atmospheric pressure" part is important: it's not enough to simply
+measure the pressure at the bottom of the tank because varying
+climate conditions will alter the reading. That's why this project uses
+a "differential" pressure transducer that has two inlets. By leaving one
+inlet open to the atmosphere and connecting the other to the bottom of
+the tank the transducer will output the difference between the two,
+automatically compensating for varying air pressure and giving a
+constant reading for constant depth.
+
+The Arduino then reads the output of the transducer and reports the
+depth of the tank. In this project we will use an Ethernet shield to
+have the Arduino connect to an online datalogging service called
+Pachube to generate graphs of water depth over time, but you could
+also have it make decisions on the basis of the reading to control
+items such as a water pump.
