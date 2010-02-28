@@ -9,7 +9,7 @@ Copyright 2009 Hugh Blemings
 | Jonathan Oxer and Hugh Blemings (Apress, 2009). More information    |
 | about the book and this project is available at:                    |
 |                                                                     |
-| www.practicalarduino.com/projects/medium/water-tank-depth-sensor    |
+|  www.practicalarduino.com/projects/water-tank-depth-sensor          |
 +---------------------------------------------------------------------+
 
 Water is a precious resource in many parts of the world, and many
@@ -50,8 +50,6 @@ automatically compensating for varying air pressure and giving a
 constant reading for constant depth.
 
 The Arduino then reads the output of the transducer and reports the
-depth of the tank. In this project we will use an Ethernet shield to
-have the Arduino connect to an online datalogging service called
-Pachube to generate graphs of water depth over time, but you could
-also have it make decisions on the basis of the reading to control
-items such as a water pump.
+depth of the tank. In this project we will use a WiShield that provides
+WiFi network connectivity to report the current water level using a
+web interface.
